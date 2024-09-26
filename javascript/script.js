@@ -1,6 +1,6 @@
 function updateTime() {
     let nairobiElement = document.querySelector("#nairobi");
-    if (nairobiElement.length){
+    if (nairobiElement){
         let nairobiDateElement = nairobiElement.querySelector(".date");
         let nairobiTimeElement = nairobiElement.querySelector(".time");
         let nairobiTime = moment().tz("Africa/Nairobi");
@@ -13,7 +13,7 @@ function updateTime() {
     
 
     let parisElement = document.querySelector("#paris");
-    if (parisElement.length){
+    if (parisElement){
         let parisDateElement = parisElement.querySelector(".date");
         let parisTimeElement = parisElement.querySelector(".time");
         let parisTime = moment().tz("Europe/Paris");
@@ -26,6 +26,9 @@ function updateTime() {
 
 function updateCity(event) {
     let cityTimezone = event.target.value;
+    if (cityTimezone === "current"){
+        cityTimezone = moment.tz.guess();
+    }
     let cityName = cityTimezone.replace("_", " ").split("/")[1];
     let cityTime = moment().tz(cityTimezone);
     let citiesElement = document.querySelector("#cities");
